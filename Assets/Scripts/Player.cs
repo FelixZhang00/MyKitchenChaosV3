@@ -16,12 +16,12 @@ public class Player : MonoBehaviour,IKitchenObjectParent
 
     private bool isWalking = false;
     private Vector3 lastInteractDir;
-    private ClearCounter selectedClearCounter;
+    private BaseCounter selectedBaseCounter;
     private KitchenObject kitchenObject;
 
     public event EventHandler<SelectCounterEventArgs> OnSelectCounterHandler;
     public class SelectCounterEventArgs: EventArgs {
-       public ClearCounter selectCounter;
+       public BaseCounter selectCounter;
     }
 
     private void Awake()
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour,IKitchenObjectParent
 
     private void GameInput_OnInteractHandler(object sender, EventArgs e)
     {
-        selectedClearCounter?.Interact(this);
+        selectedBaseCounter?.Interact(this);
     }
 
     // Update is called once per frame
@@ -62,10 +62,10 @@ public class Player : MonoBehaviour,IKitchenObjectParent
         float interactDistance = 2f;
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, counterLayerMask))
         {
-            if (raycastHit.transform.TryGetComponent<ClearCounter>(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent<BaseCounter>(out BaseCounter baseCounter))
             {
-                if (selectedClearCounter != clearCounter) {
-                    SetSelectedCounter(clearCounter);
+                if (selectedBaseCounter != baseCounter) {
+                    SetSelectedCounter(baseCounter);
                 }
             }
             else {
@@ -106,12 +106,12 @@ public class Player : MonoBehaviour,IKitchenObjectParent
         return isWalking;
     }
 
-    private void SetSelectedCounter(ClearCounter clearCounter) {
-        selectedClearCounter = clearCounter;
+    private void SetSelectedCounter(BaseCounter baseCounter) {
+        selectedBaseCounter = baseCounter;
 
         OnSelectCounterHandler?.Invoke(this, new SelectCounterEventArgs
         {
-            selectCounter = selectedClearCounter
+            selectCounter = selectedBaseCounter
         });
     }
 
