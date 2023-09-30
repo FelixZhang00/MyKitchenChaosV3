@@ -35,11 +35,18 @@ public class Player : MonoBehaviour,IKitchenObjectParent
     private void Start()
     {
         gameInput.OnInteractHandler += GameInput_OnInteractHandler;
+        gameInput.OnInteractAlternateHandler += GameInput_OnInteractAlternateHandler;
+    }
+
+    private void GameInput_OnInteractAlternateHandler(object sender, EventArgs e)
+    {
+        selectedBaseCounter?.InteractAlternate(this);
     }
 
     private void GameInput_OnInteractHandler(object sender, EventArgs e)
     {
         selectedBaseCounter?.Interact(this);
+
     }
 
     // Update is called once per frame
