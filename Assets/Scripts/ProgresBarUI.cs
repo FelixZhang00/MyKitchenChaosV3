@@ -21,7 +21,7 @@ public class ProgresBarUI : MonoBehaviour
     private void IHasProgress_OnProgressChanged(object sender, IHasProgress.ProgressEventArgs e)
     {
         image.fillAmount = e.progressNormalized;
-        if (image.fillAmount >= 1)
+        if (image.fillAmount <= 0)
         {
             Hide();
         }

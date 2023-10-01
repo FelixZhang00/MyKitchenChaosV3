@@ -46,6 +46,10 @@ public class CuttingCounter : BaseCounter,IHasProgress
             else
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
+                OnProgressChanged?.Invoke(this, new ProgressEventArgs()
+                {
+                    progressNormalized = 0
+                });
             }
         }
     }
