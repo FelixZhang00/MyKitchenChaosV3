@@ -1500,10 +1500,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4028669314616713381, guid: d2c7b7fc344d79448a9ed7d2035affd9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028669314616713381, guid: d2c7b7fc344d79448a9ed7d2035affd9,
+        type: 3}
+      propertyPath: plateKitchenObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 5798189b65c4d184d8a5e0449f1e6358,
+        type: 2}
+    - target: {fileID: 6451025286090770297, guid: d2c7b7fc344d79448a9ed7d2035affd9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6880042053465790857, guid: d2c7b7fc344d79448a9ed7d2035affd9,
         type: 3}
       propertyPath: m_Name
       value: PlatesCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880042053465790857, guid: d2c7b7fc344d79448a9ed7d2035affd9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
