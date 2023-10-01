@@ -2,21 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static IHasProgress;
 
-public class CuttingCounter : BaseCounter
+public class CuttingCounter : BaseCounter,IHasProgress
 {
 
     [SerializeField] private CuttingRecipeSO[] CuttingRecipeSOArray;
 
     private int cuttingProgress;
 
-    public event EventHandler<ProgressEventArgs> OnProgressChanged;
-    public class ProgressEventArgs : EventArgs {
-        public float progressNormalized;
-    }
-
     public event EventHandler OnCut;
-
+    public event EventHandler<ProgressEventArgs> OnProgressChanged;
 
     public override void Interact(Player player)
     {
