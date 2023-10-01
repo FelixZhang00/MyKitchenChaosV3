@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,11 @@ public class StoveCounter : BaseCounter
     [SerializeField] private BurnedRecipeSO[] burnedRecipeSOArray;
     private FryingRecipeSO fryingRecipeSO;
     private BurnedRecipeSO burnedRecipeSO;
+
+    public event EventHandler<StateChangedArgs> OnStateChanged;
+    public class StateChangedArgs : EventArgs {
+        public State state;
+    }
 
     public enum State
     {
@@ -46,6 +52,10 @@ public class StoveCounter : BaseCounter
 
                         fryingTime = 0f;
                         state = State.Fired;
+                        OnStateChanged?.Invoke(this, new StateChangedArgs()
+                        {
+                            state = state
+                        });
                     }
                     break;
                 case State.Fired:
@@ -56,6 +66,10 @@ public class StoveCounter : BaseCounter
 
                         burnTime = 0f;
                         state = State.Burned;
+                        OnStateChanged?.Invoke(this, new StateChangedArgs()
+                        {
+                            state = state
+                        });
                     }
                     break;
                 case State.Burned:
@@ -77,6 +91,10 @@ public class StoveCounter : BaseCounter
                     player.GetKitchenObject().SetKitchenObjectParent(this);
                     fryingTime = 0f;
                     state = State.Frying;
+                    OnStateChanged?.Invoke(this, new StateChangedArgs()
+                    {
+                        state = state
+                    });
                 }
             }
             else
@@ -95,6 +113,10 @@ public class StoveCounter : BaseCounter
                 GetKitchenObject().SetKitchenObjectParent(player);
 
                 state = State.Idle;
+                OnStateChanged?.Invoke(this, new StateChangedArgs()
+                {
+                    state = state
+                });
             }
         }
     }
