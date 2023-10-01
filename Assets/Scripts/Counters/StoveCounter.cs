@@ -9,7 +9,7 @@ public class StoveCounter : BaseCounter
     private FryingRecipeSO fryingRecipeSO;
     private BurnedRecipeSO burnedRecipeSO;
 
-    private enum State
+    public enum State
     {
         Idle,
         Frying,
@@ -93,6 +93,8 @@ public class StoveCounter : BaseCounter
             else
             {
                 GetKitchenObject().SetKitchenObjectParent(player);
+
+                state = State.Idle;
             }
         }
     }
