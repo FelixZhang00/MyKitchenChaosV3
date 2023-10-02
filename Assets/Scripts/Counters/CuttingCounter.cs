@@ -11,8 +11,14 @@ public class CuttingCounter : BaseCounter,IHasProgress
 
     private int cuttingProgress;
 
+    public static event EventHandler OnAnyCut;
     public event EventHandler OnCut;
     public event EventHandler<ProgressEventArgs> OnProgressChanged;
+
+    new public static void ResetStaticData()
+    {
+        OnAnyCut = null;
+    }
 
     public override void Interact(Player player)
     {
@@ -76,6 +82,7 @@ public class CuttingCounter : BaseCounter,IHasProgress
                     progressNormalized = (float)cuttingProgress / maxProgress
                 });
                 OnCut?.Invoke(this, EventArgs.Empty);
+                OnAnyCut?.Invoke(this, EventArgs.Empty);
             }
 
             if (cuttingProgress >= maxProgress) {
