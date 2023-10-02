@@ -9,8 +9,12 @@ public class GameInput : MonoBehaviour
     public event EventHandler OnInteractAlternateHandler;
     private PlayerInputActions playerInputActions;
 
+    public static GameInput Instance { get; private set; }
+
     private void Awake()
     {
+        Instance = this;
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 

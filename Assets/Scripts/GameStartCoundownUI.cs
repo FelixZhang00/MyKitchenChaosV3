@@ -50,7 +50,7 @@ public class GameStartCountdownUI : MonoBehaviour
         if (previousCountdownNumber != countdownNumber)
         {
             previousCountdownNumber = countdownNumber;
-            animator.SetTrigger(NUMBER_POPUP);
+            //animator.SetTrigger(NUMBER_POPUP); fixme felix
             SoundManager.Instance.PlayCountdownSound();
         }
     }

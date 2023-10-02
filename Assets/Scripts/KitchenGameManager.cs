@@ -37,12 +37,25 @@ public class KitchenGameManager : MonoBehaviour
         Instance = this;
 
         state = State.WaitingToStart;
+
     }
 
     private void Start()
     {
         //GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         //GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+
+        //fixme felix
+        GameInput.Instance.OnInteractAlternateHandler += Instance_OnInteractAlternateHandler;
+    }
+
+    private void Instance_OnInteractAlternateHandler(object sender, EventArgs e)
+    {
+        if (state == State.WaitingToStart)
+        {
+            state = State.CountdownToStart;
+            OnStateChanged?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
